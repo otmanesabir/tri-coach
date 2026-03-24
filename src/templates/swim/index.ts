@@ -1,0 +1,259 @@
+import type { WorkoutTemplate } from '../../types.js';
+
+export const swimTechnique: WorkoutTemplate = {
+  id: 'swim.technique',
+  name: 'Technique & Drills',
+  sport: 'swim',
+  category: 'technique',
+  summary: 'Drill-focused session improving stroke mechanics, catch efficiency, and bilateral breathing.',
+  scientificRationale:
+    'Swim efficiency (measured as stroke count per length or SWOLF) is the single biggest predictor of triathlon swim performance for age-groupers. Unlike running, where economy improves primarily through volume, swim economy improves primarily through technique work. Drill-based sessions at low intensity (Z1-Z2) allow athletes to focus on proprioceptive feedback without fatigue-related form breakdown. Catch-up drill has been shown to improve stroke length by 5-12% in novice-intermediate swimmers (Toussaint & Beek, 1992).',
+  citations: [
+    'Toussaint, H.M. & Beek, P.J. (1992). Biomechanics of competitive front crawl swimming. Sports Med, 13(1), 8-24.',
+    'Maglischo, E.W. (2003). Swimming Fastest. Human Kinetics.',
+    'Laughlin, T. (2004). Total Immersion: The Revolutionary Way to Swim Better, Faster, and Easier. Touchstone.',
+  ],
+  trainingPhases: ['base', 'build', 'peak', 'taper', 'recovery'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '300m',
+      description: '200m easy freestyle + 100m kick (with board or streamline).',
+      targetZone: 'Zone 1',
+      targetRPE: '2',
+      coachingCues: [
+        'Focus on long, smooth strokes from the start',
+        'Count strokes per length — establish baseline',
+      ],
+    },
+    {
+      name: 'Drill Set',
+      duration: '600-800m',
+      description: '4 × 50m Catch-Up drill (focus on full extension before next stroke)\n4 × 50m Fingertip Drag (high elbow recovery)\n4 × 50m Single-Arm freestyle (25m each arm)\n4 × 25m Bilateral Breathing (every 3 strokes)\nRest 15-20s between reps.',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2-3',
+      coachingCues: [
+        'Drills are NOT about speed — slow and deliberate wins',
+        'Catch-up: lead hand stays extended until other hand touches it',
+        'Fingertip drag: elbow high, fingertips brush the surface',
+        'Single-arm: non-working arm extended, rotate from hips',
+        'Bilateral breathing: exhale fully underwater, quick inhale',
+      ],
+    },
+    {
+      name: 'Swim Set',
+      duration: '400-600m',
+      description: '4-6 × 100m freestyle at easy pace, focusing on integrating drill improvements.\nCount strokes per length — aim for 2-3 fewer than baseline.\nRest 20s between reps.',
+      targetZone: 'Zone 2',
+      targetRPE: '3-4',
+      coachingCues: [
+        'Apply what you just drilled — longer strokes, high elbow, rotation',
+        'Quality over speed. If stroke count creeps up, slow down.',
+        'Think "tall and long" in the water',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '200m',
+      description: '200m easy choice (backstroke or very easy freestyle).',
+      targetZone: 'Zone 1',
+      targetRPE: '1-2',
+      coachingCues: ['Relax and let your body absorb the technique work'],
+    },
+  ],
+  adaptations: {
+    beginner: '1500-1800m total. Add 25m reps if 50m is too long. Use fins for single-arm drill.',
+    intermediate: '2000-2500m total. Add sculling drills and 6-kick switch drill.',
+    advanced: '2500-3000m. Add band-only swimming (ankles banded), paddle work for catch feel.',
+  },
+  durationFormula: '45-60min. Total: 1500-3000m depending on level.',
+  totalDuration: '45-60 min',
+  frequency: '1-2× per week. At least one technique session per week year-round.',
+  recoveryNeeded: 'Minimal — technique work is low intensity. OK before or after other sessions.',
+};
+
+export const swimEasy: WorkoutTemplate = {
+  id: 'swim.easy',
+  name: 'Easy Swim',
+  sport: 'swim',
+  category: 'aerobic',
+  summary: 'Continuous easy swimming for aerobic base building. The swim equivalent of an easy run.',
+  scientificRationale:
+    'Aerobic base swimming at Zone 2 develops the cardiovascular adaptations specific to horizontal, prone exercise. Swimming places unique demands on the cardiovascular system: blood redistribution in horizontal position, breath-hold intervals, and upper-body-dominant oxygen demand. Regular easy swimming improves stroke efficiency under fatigue and builds the volume base needed for open-water confidence (Maglischo, 2003).',
+  citations: [
+    'Maglischo, E.W. (2003). Swimming Fastest. Human Kinetics.',
+    'Seiler, S. & Kjerland, G.Ø. (2006). Quantifying training intensity distribution in elite endurance athletes. Scand J Med Sci Sports, 16(1), 49-56.',
+  ],
+  trainingPhases: ['base', 'build', 'peak', 'taper', 'recovery'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '200-300m',
+      description: '200m easy freestyle with focus on relaxed breathing.',
+      targetZone: 'Zone 1',
+      targetRPE: '2',
+      coachingCues: [
+        'Ease into it — first 200m should feel effortless',
+        'Establish a rhythmic breathing pattern (every 3 or 4 strokes)',
+      ],
+    },
+    {
+      name: 'Main Set',
+      duration: '1200-2000m',
+      description: 'Continuous freestyle or broken into sets:\nOption A: Straight swim 1200-2000m at easy pace\nOption B: 4-8 × 200m with 15s rest\nOption C: Mix of 200s and 100s\nMaintain consistent, comfortable pace throughout.',
+      targetZone: 'Zone 2',
+      targetHR: 'CSS + 8-12s/100m',
+      targetRPE: '3-4',
+      coachingCues: [
+        'Should feel sustainable — not gasping at the wall',
+        'Focus on smooth, efficient strokes, not speed',
+        'Consistent stroke count per length across the set',
+        'Use rest intervals to reset form if needed',
+        'Open-water simulation: sight every 8-10 strokes on some laps',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '200m',
+      description: '100m easy backstroke + 100m easy freestyle.',
+      targetZone: 'Zone 1',
+      targetRPE: '1-2',
+      coachingCues: ['Let heart rate come down, focus on relaxation in the water'],
+    },
+  ],
+  adaptations: {
+    beginner: '1000-1500m total. Break into 50m or 100m reps with 20-30s rest. Walking breaks OK.',
+    intermediate: '1800-2500m total. Mostly continuous or 200m reps.',
+    advanced: '2500-3500m total. Straight swims with pull buoy or paddles for variety.',
+  },
+  durationFormula: '30-50min. Total: 1000-3500m depending on level.',
+  totalDuration: '30-50 min',
+  frequency: '1-3× per week as aerobic foundation.',
+  recoveryNeeded: 'Minimal. OK to swim easy before or after other sessions.',
+};
+
+export const swimThreshold: WorkoutTemplate = {
+  id: 'swim.threshold',
+  name: 'Threshold Intervals',
+  sport: 'swim',
+  category: 'threshold',
+  summary: 'CSS-pace intervals developing sustained speed and lactate clearance. The key swim quality session.',
+  scientificRationale:
+    'Training at Critical Swim Speed (CSS) — the swimming analogue of lactate threshold — is the most effective intensity for improving sustained swim performance. CSS intervals stimulate mitochondrial adaptations in upper body musculature and improve lactate clearance at race-relevant intensities. For triathlon, the ability to sustain CSS pace for 20-40 minutes directly predicts 1500-1900m swim splits (Dekerle et al., 2002).',
+  citations: [
+    'Dekerle, J. et al. (2002). Validity and reliability of critical speed in relation to swimming performance. Int J Sports Med, 23(2), 93-98.',
+    'Wakayoshi, K. et al. (1992). Determination of critical power and critical stroke rate in front crawl swimming. Eur J Appl Physiol, 64, 419-424.',
+    'Maglischo, E.W. (2003). Swimming Fastest. Human Kinetics.',
+  ],
+  trainingPhases: ['build', 'peak'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '400-500m',
+      description: '200m easy freestyle\n100m drill (catch-up or fingertip drag)\n4 × 50m build (easy → moderate) on 10s rest.',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2-3',
+      coachingCues: [
+        'Build warm-up sets are crucial for swim — prepare the shoulders',
+        'Last 2 × 50m should approach target pace',
+      ],
+    },
+    {
+      name: 'Main Set',
+      duration: '800-1600m',
+      description: 'Option A: 8 × 100m @ CSS pace, 15-20s rest\nOption B: 4 × 200m @ CSS pace, 20-30s rest\nOption C: 5 × 100m + 3 × 200m @ CSS, 15-20s rest\nHit target splits consistently — don\'t go out too fast.',
+      targetZone: 'Zone 4 (CSS pace)',
+      targetHR: 'CSS pace per 100m',
+      targetRPE: '7-8',
+      coachingCues: [
+        'Even splits are everything — don\'t go out fast and die',
+        'First rep should feel controlled, last rep should feel hard',
+        'Check pace clock every 100m — consistency over speed',
+        'Maintain stroke count: if it degrades by >2 SPL, rest longer',
+        'Push off the wall cleanly — streamline for 5m before surfacing',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '300m',
+      description: '200m easy freestyle + 100m easy backstroke.',
+      targetZone: 'Zone 1',
+      targetRPE: '1-2',
+      coachingCues: ['Active recovery — keep moving to clear lactate'],
+    },
+  ],
+  adaptations: {
+    beginner: 'Use 50m reps at CSS with 20-30s rest. Total main set 400-600m.',
+    intermediate: '100m reps as prescribed. Build to 1200m main set.',
+    advanced: '200m reps primary. Add 4 × 50m fast (Z5) after main set. Total 1600-2000m main set.',
+  },
+  durationFormula: '45-60min. Total: 1500-3000m.',
+  totalDuration: '45-60 min',
+  frequency: '1-2× per week. This is the key swim quality session.',
+  recoveryNeeded: '24hr before next quality swim. Easy swim or bike OK same day.',
+};
+
+export const swimEndurance: WorkoutTemplate = {
+  id: 'swim.endurance',
+  name: 'Endurance Build',
+  sport: 'swim',
+  category: 'endurance',
+  summary: 'Longer sets building swim volume and sustained effort capacity. Prepares for open-water race distances.',
+  scientificRationale:
+    'Swim-specific endurance requires building volume tolerance beyond race distance. The "over-distance" principle — training at distances 1.5-2× race distance at moderate intensity (Z2-Z3) — improves muscular endurance, pacing awareness, and mental confidence for open water. Triathletes often lack swim volume; this session addresses the gap between pool comfort and race-distance readiness (Friel, 2009).',
+  citations: [
+    'Friel, J. (2009). The Triathlete\'s Training Bible, 3rd ed. VeloPress.',
+    'Maglischo, E.W. (2003). Swimming Fastest. Human Kinetics.',
+    'Aspenes, S.T. & Karlsen, T. (2012). Exercise-training intervention studies in competitive swimming. Sports Med, 42(6), 527-543.',
+  ],
+  trainingPhases: ['base', 'build'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '300-400m',
+      description: '200m easy freestyle\n100m kick\n4 × 25m drill (choice).',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2',
+      coachingCues: ['Relaxed start — save energy for the main set'],
+    },
+    {
+      name: 'Main Set',
+      duration: '1500-2500m',
+      description: 'Ladder set:\n1 × 400m @ Z2 (20s rest)\n2 × 300m @ Z2-Z3 (15s rest)\n3 × 200m @ Z3 (15s rest)\n4 × 100m @ Z3 (10s rest)\nPace builds slightly from Z2 to Z3 as distance shortens.',
+      targetZone: 'Zone 2-3',
+      targetHR: 'CSS + 3-12s/100m',
+      targetRPE: '4-6',
+      coachingCues: [
+        'Negative split mindset — get faster as sets get shorter',
+        'The 400 should feel very manageable',
+        'The 100s should feel like controlled effort, not sprinting',
+        'Simulate race pacing: start conservatively, build through',
+        'Practice bilateral breathing on the longer reps',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '200-300m',
+      description: '200m easy choice stroke. Optional: 100m pull buoy easy.',
+      targetZone: 'Zone 1',
+      targetRPE: '1-2',
+      coachingCues: ['Use this time to reflect on pacing and stroke efficiency'],
+    },
+  ],
+  adaptations: {
+    beginner: 'Reduce main set to 800-1200m. Use shorter reps (100-200m). More rest (20-30s).',
+    intermediate: 'As prescribed (1500-2000m main set). Add pull buoy set for variety.',
+    advanced: '2500-3000m main set. Add continuous 1000-1500m straight swim. Add paddles for the 100s.',
+  },
+  durationFormula: '50-70min. Total: 2000-3500m.',
+  totalDuration: '50-70 min',
+  frequency: '1× per week. The "long swim" of the week.',
+  recoveryNeeded: '24hr before quality swim session. Easy activity OK same day.',
+};
+
+export const swimTemplates: WorkoutTemplate[] = [
+  swimTechnique,
+  swimEasy,
+  swimThreshold,
+  swimEndurance,
+];

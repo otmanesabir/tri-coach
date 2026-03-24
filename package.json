@@ -1,0 +1,48 @@
+{
+  "name": "@otmanesabir/tri-coach",
+  "version": "0.1.0",
+  "description": "Science-based endurance training workout templates for triathlon, running, cycling, swimming, and strength training",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "tri-coach": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "triathlon",
+    "training",
+    "endurance",
+    "running",
+    "cycling",
+    "swimming",
+    "workout",
+    "coach",
+    "VDOT",
+    "heart-rate-zones",
+    "FTP",
+    "CSS"
+  ],
+  "author": "Otmane Sabir <otmane@gozauber.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otmanesabir/tri-coach.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.0",
+    "tsx": "^4.16.0",
+    "@types/node": "^22.0.0"
+  }
+}

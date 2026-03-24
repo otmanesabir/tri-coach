@@ -1,0 +1,65 @@
+export const runTempo = {
+    id: 'run.tempo',
+    name: 'Tempo Run',
+    sport: 'run',
+    category: 'threshold',
+    summary: 'Sustained effort at or near lactate threshold. The "comfortably hard" pace you could hold for about 60 minutes in a race.',
+    scientificRationale: 'Tempo runs at 83-88% VO2max (Daniels T-pace) train the body to clear lactate more efficiently, raising the lactate threshold. This is the single most important intensity for endurance performance improvement in trained athletes. The threshold intensity represents the tipping point between sustainable and unsustainable effort — training here teaches the body to sustain a higher pace before lactate accumulates (Faude et al., 2009).',
+    citations: [
+        'Faude, O. et al. (2009). Lactate threshold concepts: how valid are they? Sports Med, 39(6), 469-490.',
+        'Daniels, J. (2014). Daniels\' Running Formula, 3rd ed. Human Kinetics, Ch. 7.',
+        'Friel, J. (2009). The Triathlete\'s Training Bible, 3rd ed. VeloPress.',
+    ],
+    trainingPhases: ['build', 'peak'],
+    phases: [
+        {
+            name: 'Warm-up',
+            duration: '10-15 min',
+            description: 'Easy jog building from Zone 1 to Zone 2. Include 4 × 20s strides with 40s recovery.',
+            targetZone: 'Zone 1-2',
+            targetRPE: '2-3',
+            coachingCues: [
+                'Take at least 10 minutes — a proper warm-up is critical for threshold work',
+                'Strides should be smooth accelerations, not sprints',
+                'You should feel "ready to go" before starting the main set',
+            ],
+        },
+        {
+            name: 'Main Set',
+            duration: '20-40 min',
+            description: 'Sustained running at threshold pace. "Comfortably hard" — you can say a few words but not sentences.',
+            targetZone: 'Zone 4-5a (Friel) / T-pace (Daniels)',
+            targetHR: '94-102% LTHR',
+            targetPace: 'T-pace (83-88% VO2max)',
+            targetRPE: '6-7',
+            coachingCues: [
+                '"Comfortably hard" — if you could go harder you would, but you can sustain this',
+                'It takes 5-8 minutes for HR to settle — don\'t panic if it climbs slowly',
+                'Focus on smooth, efficient form, not grinding',
+                'Even pacing is key — negative split is ideal (second half slightly faster)',
+                'If HR exceeds 102% LTHR, back off slightly',
+            ],
+        },
+        {
+            name: 'Cool-down',
+            duration: '10 min',
+            description: 'Easy jog tapering to a walk.',
+            targetZone: 'Zone 1-2',
+            targetRPE: '2-3',
+            coachingCues: [
+                'Don\'t just stop — jog easy for at least 5 minutes',
+                'This is a good time to reflect on the session: did you hold pace? Did it feel right?',
+            ],
+        },
+    ],
+    adaptations: {
+        beginner: '2 × 10min at tempo with 3min easy jog between. Work up to 20min continuous.',
+        intermediate: '20-30min continuous at T-pace. Or 3-4 × 8min "cruise intervals" with 1-2min jog recovery.',
+        advanced: '30-40min continuous. Or 4-5 × 10min cruise intervals. May include negative split progression.',
+    },
+    durationFormula: 'Main set: 20min base → 40min peak. Daniels recommends tempo work totaling 10% of weekly volume, max 60min at T-pace per session.',
+    totalDuration: '40-65 min',
+    frequency: '1× per week in build/peak phases.',
+    recoveryNeeded: '24-48 hours. Easy run or cross-train the next day.',
+};
+//# sourceMappingURL=tempo.js.map

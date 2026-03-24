@@ -1,0 +1,65 @@
+export const runEasy = {
+    id: 'run.easy',
+    name: 'Easy Run',
+    sport: 'run',
+    category: 'aerobic',
+    summary: 'Conversational-pace run building aerobic base. The foundation of all endurance training.',
+    scientificRationale: 'Easy running at 59-74% VO2max stimulates mitochondrial biogenesis, capillarization, and improved fat oxidation without excessive glycogen depletion or musculoskeletal stress. The "talk test" correlates well with ventilatory threshold 1, confirming aerobic-zone training. Studies show elite endurance athletes spend 75-80% of training volume at this intensity (Seiler & Kjerland, 2006).',
+    citations: [
+        'Seiler, S. & Kjerland, G.Ø. (2006). Quantifying training intensity distribution in elite endurance athletes. Scand J Med Sci Sports, 16(1), 49-56.',
+        'Daniels, J. (2014). Daniels\' Running Formula, 3rd ed. Human Kinetics.',
+        'ACSM (2011). Quantity and quality of exercise. Med Sci Sports Exerc, 43(7), 1334-1359.',
+    ],
+    trainingPhases: ['base', 'build', 'peak', 'taper', 'recovery'],
+    phases: [
+        {
+            name: 'Warm-up',
+            duration: '5-10 min',
+            description: 'Walk briskly for 2-3 min, then ease into a very easy jog.',
+            targetZone: 'Zone 1 (Friel) / below E-pace',
+            targetRPE: '2-3',
+            coachingCues: [
+                'Start slower than you think you need to',
+                'Let your body warm up naturally — no rushing',
+                'Focus on relaxed, smooth movement',
+            ],
+        },
+        {
+            name: 'Main Set',
+            duration: '20-60 min',
+            description: 'Run at easy, conversational pace. You should be able to speak in full sentences.',
+            targetZone: 'Zone 2 (Friel) / E-pace (Daniels)',
+            targetHR: '81-89% LTHR',
+            targetPace: 'E-pace (59-74% VO2max)',
+            targetRPE: '3-4',
+            coachingCues: [
+                'If you can\'t hold a conversation, slow down',
+                'Focus on cadence (170-180 spm), not speed',
+                'Keep shoulders relaxed, arms swinging naturally',
+                'Run by feel — HR and pace are guides, not rules',
+                'It\'s OK to walk uphills to keep HR in zone',
+            ],
+        },
+        {
+            name: 'Cool-down',
+            duration: '5 min',
+            description: 'Gradually slow to a walk. Light stretching optional.',
+            targetZone: 'Zone 1',
+            targetRPE: '1-2',
+            coachingCues: [
+                'Ease into a walk over the last few minutes',
+                'Take a few deep breaths to bring HR down',
+            ],
+        },
+    ],
+    adaptations: {
+        beginner: '20-30 min total. Walk breaks every 5-10 min are fine. Focus on time on feet, not distance.',
+        intermediate: '30-45 min at steady easy pace. Build gradually to 60 min.',
+        advanced: '45-60 min. May include strides (4-6 × 20s) at the end if not a recovery day.',
+    },
+    durationFormula: 'Base: 20-45 min. Build: 30-60 min. Increase by no more than 10% per week.',
+    totalDuration: '30-70 min (including warm-up/cool-down)',
+    frequency: '2-4× per week. This is the most common run type.',
+    recoveryNeeded: 'Minimal — same-day doubles OK. 24hr before quality sessions.',
+};
+//# sourceMappingURL=easy.js.map

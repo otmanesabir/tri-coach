@@ -1,0 +1,58 @@
+import type { WorkoutTemplate } from '../../types.js';
+
+export const runRacePace: WorkoutTemplate = {
+  id: 'run.race-pace',
+  name: 'Race Pace Run',
+  sport: 'run',
+  category: 'race-specific',
+  summary: 'Practice running at goal race pace. Builds pace awareness, confidence, and race-specific fitness.',
+  scientificRationale:
+    'Race-pace training develops the specific physiological and neurological adaptations needed for race day. Running at marathon/half-marathon pace on tired legs teaches the body to maintain form and fuel utilization at race intensity. The specificity principle states that adaptations are most pronounced at the trained intensity (Hawley et al., 1997). This session also builds critical pacing confidence.',
+  citations: [
+    'Hawley, J.A. et al. (1997). Training techniques to improve fatigue resistance and enhance endurance performance. J Sports Sci, 15(3), 325-333.',
+    'Daniels, J. (2014). Daniels\' Running Formula, 3rd ed. Ch. 6: Marathon Training.',
+  ],
+  trainingPhases: ['build', 'peak'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '10-15 min',
+      description: 'Easy jog building to moderate pace.',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2-3',
+      coachingCues: ['Take time to settle into good form'],
+    },
+    {
+      name: 'Main Set',
+      duration: '20-50 min',
+      description: 'Run at goal race pace. For half-marathon: M-pace to T-pace. For 10K: T-pace. Practice fueling strategy.',
+      targetZone: 'Zone 3-4 (Friel)',
+      targetPace: 'Goal race pace',
+      targetRPE: '5-7 (depending on race distance)',
+      coachingCues: [
+        'Lock into pace early and maintain — even effort throughout',
+        'Use this to practice race-day fueling',
+        'This should feel "sustainably challenging" — not desperate',
+        'Monitor form: are you efficient at race pace?',
+        'Practice your race-day mental strategies',
+        'For HM goal: 85-90% LTHR sustainable effort',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '10 min',
+      description: 'Easy jog to walk.',
+      targetRPE: '2-3',
+      coachingCues: ['Reflect on how race pace felt — was it sustainable?'],
+    },
+  ],
+  adaptations: {
+    beginner: '15-20min at estimated race pace inside a longer easy run.',
+    intermediate: '20-30min at race pace. Can be done as part of a long run (last 30min at race pace).',
+    advanced: '30-50min at race pace. Or long run with final 45min at HM race pace (race simulation).',
+  },
+  durationFormula: 'Build from 20min to race-distance duration over 6-8 weeks. Peak at 70-80% of race distance at pace.',
+  totalDuration: '40-70 min',
+  frequency: '1× per week in peak phase, replacing tempo.',
+  recoveryNeeded: '24-48 hours.',
+};

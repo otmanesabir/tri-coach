@@ -1,0 +1,57 @@
+import type { WorkoutTemplate } from '../../types.js';
+
+export const runFartlek: WorkoutTemplate = {
+  id: 'run.fartlek',
+  name: 'Fartlek',
+  sport: 'run',
+  category: 'mixed',
+  summary: '"Speed play" — unstructured intervals mixing easy running with surges. Fun, flexible, and effective.',
+  scientificRationale:
+    'Fartlek ("speed play" in Swedish) was developed by Swedish coach Gösta Holmér in the 1930s. The varying intensities train multiple energy systems within a single session. Modern research supports mixed-intensity sessions for improving both aerobic capacity and lactate threshold. The unstructured nature reduces psychological monotony and teaches athletes to run by feel rather than pace — a critical race skill (Laursen & Jenkins, 2002).',
+  citations: [
+    'Laursen, P.B. & Jenkins, D.G. (2002). The scientific basis for high-intensity interval training. Sports Med, 32(1), 53-73.',
+    'Seiler, S. (2010). What is best practice for training intensity and duration distribution? Int J Sports Physiol Perform, 5(3), 276-291.',
+  ],
+  trainingPhases: ['base', 'build', 'peak'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '10 min',
+      description: 'Easy jog.',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2-3',
+      coachingCues: ['Ease into it naturally'],
+    },
+    {
+      name: 'Main Set',
+      duration: '20-40 min',
+      description: 'Alternate between easy running and surges of varying length and intensity. Use landmarks (lamp posts, trees, hills) as surge triggers. Example: 1min hard / 2min easy × 8-10, or random surges of 30s-3min with easy running between.',
+      targetZone: 'Mix of Zone 2-5',
+      targetRPE: '3-8 (varies throughout)',
+      coachingCues: [
+        'Run by FEEL, not watch — that\'s the whole point',
+        'Surges can be anything from 10K pace to mile pace',
+        'Easy sections should truly be easy — recover fully',
+        'Mix it up: long surges, short surges, hill surges',
+        'Have fun with it — this is the most playful run you\'ll do',
+        'Total "hard" time should be 10-20 minutes',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '5-10 min',
+      description: 'Easy jog to finish.',
+      targetRPE: '2-3',
+      coachingCues: ['End with easy running, not a surge'],
+    },
+  ],
+  adaptations: {
+    beginner: '25min total: 6 × 30s surge with 2min easy. Surges at "comfortably fast" pace.',
+    intermediate: '35min total: 8-10 surges of 1-3min at varying paces (marathon to 5K effort) with equal easy.',
+    advanced: '45min total: 10-12 surges. Include some longer 3-5min surges at T-pace. Or "Mona Fartlek": 2×90s, 4×60s, 4×30s, 4×15s with equal recovery.',
+  },
+  durationFormula: '30-50min total. Flexible — great for time-crunched weeks.',
+  totalDuration: '35-55 min',
+  frequency: '1× per week. Great base-phase introduction to intensity.',
+  recoveryNeeded: '24 hours. Less demanding than structured intervals.',
+};

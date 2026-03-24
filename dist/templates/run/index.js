@@ -1,0 +1,12 @@
+export { runEasy } from './easy.js';
+export { runRecovery } from './recovery.js';
+export { runLong } from './long.js';
+export { runTempo } from './tempo.js';
+export { runThreshold } from './threshold.js';
+export { runProgression } from './progression.js';
+export { runIntervals400, runIntervals800, runIntervals1k, runIntervalsMile } from './intervals.js';
+export { runFartlek } from './fartlek.js';
+export { runHills } from './hills.js';
+export { runStrides } from './strides.js';
+export { runRacePace } from './race-pace.js';
+//# sourceMappingURL=index.js.map

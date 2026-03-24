@@ -1,0 +1,60 @@
+import type { WorkoutTemplate } from '../../types.js';
+
+export const runThreshold: WorkoutTemplate = {
+  id: 'run.threshold',
+  name: 'Threshold Intervals (Cruise Intervals)',
+  sport: 'run',
+  category: 'threshold',
+  summary: 'Interval-based threshold training. More threshold time with less psychological and physical burden than continuous tempo.',
+  scientificRationale:
+    'Cruise intervals (Daniels\' term) allow athletes to accumulate more time at threshold intensity by breaking it into manageable segments with short recovery. The brief recovery periods allow partial lactate clearance without losing the training stimulus. Research shows equal or superior lactate threshold improvements compared to continuous tempo, with lower perceived effort and injury risk (Billat et al., 2003).',
+  citations: [
+    'Billat, V. et al. (2003). The concept of maximal lactate steady state. Sports Med, 33(6), 407-426.',
+    'Daniels, J. (2014). Daniels\' Running Formula, 3rd ed. Ch. 7: Threshold Training.',
+    'Midgley, A.W. et al. (2007). Training to enhance the physiological determinants of long-distance running performance. Sports Med, 37(10), 857-880.',
+  ],
+  trainingPhases: ['build', 'peak'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '10-15 min',
+      description: 'Easy jog with 4-6 strides.',
+      targetZone: 'Zone 1-2',
+      targetRPE: '2-3',
+      coachingCues: ['Same warm-up protocol as tempo run', 'Include dynamic stretches if needed'],
+    },
+    {
+      name: 'Main Set',
+      duration: '20-40 min at threshold',
+      description: 'Intervals at T-pace with short recovery. Classic: 4-6 × 5-8min at T-pace, 1min easy jog recovery.',
+      targetZone: 'Zone 5a (Friel) / T-pace (Daniels)',
+      targetHR: '100-102% LTHR',
+      targetPace: 'T-pace',
+      targetRPE: '7',
+      coachingCues: [
+        'Recovery is short on purpose — just enough to reset mentally, not physically',
+        '60-90 seconds recovery between intervals',
+        'Each interval should feel the same effort — if the last one is way harder, you started too fast',
+        'Total threshold time in session: 30-40min for advanced, 20-25min for intermediate',
+        'Classic prescription: 5-6 × 1000m (track) or 5 × 6min (road) at T-pace',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '10 min',
+      description: 'Easy jog to walk.',
+      targetZone: 'Zone 1',
+      targetRPE: '2-3',
+      coachingCues: ['Jog easy until HR drops below Zone 2'],
+    },
+  ],
+  adaptations: {
+    beginner: '3-4 × 5min at tempo effort with 90s recovery. Total threshold time: 15-20min.',
+    intermediate: '4-5 × 6-8min at T-pace with 60-90s recovery. Total: 24-40min.',
+    advanced: '5-6 × 8min at T-pace with 60s recovery. Or 3 × 10-12min with 2min recovery.',
+  },
+  durationFormula: 'Total T-pace volume: 10% of weekly mileage, capped at 40min per session (Daniels guideline).',
+  totalDuration: '40-65 min',
+  frequency: '1× per week. Can alternate with continuous tempo week-to-week.',
+  recoveryNeeded: '24-48 hours.',
+};

@@ -1,0 +1,67 @@
+import type { WorkoutTemplate } from '../../types.js';
+
+export const runLong: WorkoutTemplate = {
+  id: 'run.long',
+  name: 'Long Run',
+  sport: 'run',
+  category: 'aerobic',
+  summary: 'The cornerstone endurance session. Builds aerobic capacity, fat oxidation, glycogen storage, and mental resilience at easy pace.',
+  scientificRationale:
+    'Extended running at aerobic intensity maximizes peripheral adaptations: mitochondrial density increases 40-100% over 6-12 weeks, capillary-to-fiber ratio improves, and fat oxidation rate rises. The long run also depletes glycogen stores, stimulating supercompensation — the body stores 20-40% more glycogen after depletion (Hawley & Burke, 2010). For half-marathon/marathon, long runs are the #1 predictor of race performance.',
+  citations: [
+    'Hawley, J.A. & Burke, L.M. (2010). Carbohydrate availability and training adaptation. Exerc Sport Sci Rev, 38(4), 152-160.',
+    'Holloszy, J.O. & Coyle, E.F. (1984). Adaptations of skeletal muscle to endurance exercise. J Appl Physiol, 56(4), 831-838.',
+    'Daniels, J. (2014). Daniels\' Running Formula, 3rd ed. Human Kinetics, Ch. 8.',
+  ],
+  trainingPhases: ['base', 'build', 'peak'],
+  phases: [
+    {
+      name: 'Warm-up',
+      duration: '10-15 min',
+      description: 'Walk 5 min, then very easy jog. Take extra time to warm up — you\'re going to be out there a while.',
+      targetZone: 'Zone 1',
+      targetRPE: '2-3',
+      coachingCues: [
+        'First 15 min should feel too easy — that\'s correct',
+        'Stay patient, the run will come to you',
+      ],
+    },
+    {
+      name: 'Main Set',
+      duration: '60-150 min',
+      description: 'Steady easy pace throughout. Practice race nutrition for runs >90min.',
+      targetZone: 'Zone 2 (Friel) / E-pace (Daniels)',
+      targetHR: '81-89% LTHR',
+      targetPace: 'E-pace (59-74% VO2max)',
+      targetRPE: '3-5 (should rise naturally toward end)',
+      coachingCues: [
+        'Start at the slow end of E-pace — you\'ll speed up later without trying',
+        'Take in 30-60g carbs/hr after the first hour',
+        'Practice race-day nutrition on every long run >90min',
+        'Walk aid station simulations if training for a race',
+        'Break the run into thirds mentally: "settle in", "find rhythm", "finish strong"',
+        'If pace drifts slower but HR stays the same, that\'s normal fatigue — don\'t fight it',
+      ],
+    },
+    {
+      name: 'Cool-down',
+      duration: '5-10 min',
+      description: 'Walk for at least 5 minutes. Refuel within 30 minutes.',
+      targetRPE: '1-2',
+      coachingCues: [
+        'Walk until HR is below 100 bpm',
+        'Consume protein + carbs within 30 min (recovery window)',
+        'Gentle stretching or foam rolling later in the day',
+      ],
+    },
+  ],
+  adaptations: {
+    beginner: '60-75 min. Run/walk is excellent. Build to 90 min over 8-12 weeks. Never increase by more than 10-15min/week.',
+    intermediate: '75-120 min. Build toward race distance minus 20%. For HM: peak at 18-20km.',
+    advanced: '90-150 min. For HM prep, peak at 22-24km. May include last 20-30min at marathon pace in build phase.',
+  },
+  durationFormula: 'Start at 60min, add 10-15min per week. Recovery week: back to previous week\'s duration. Peak: 2.5-3hr for marathon, 1.5-2hr for half.',
+  totalDuration: '75-170 min',
+  frequency: '1× per week (non-negotiable for endurance events).',
+  recoveryNeeded: '24-48 hours. Easy day after. No quality sessions next day.',
+};
