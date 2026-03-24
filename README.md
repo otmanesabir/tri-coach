@@ -15,6 +15,15 @@ tri-coach is designed as a **knowledge layer for AI coaching agents**. Instead o
 
 Works great as a tool for ChatGPT, Claude, or any LLM-based coaching system.
 
+**JSON by default, `--pretty` for humans:**
+```bash
+# Default: structured JSON (for agents)
+tri-coach templates show run.tempo
+
+# Human-readable: colored, formatted output
+tri-coach templates show run.tempo --pretty
+```
+
 ## Why?
 
 Most training apps give you workouts without explaining *why*. That means you can't adapt intelligently when life happens. tri-coach treats you like an adult:

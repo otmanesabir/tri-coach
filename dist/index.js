@@ -9,7 +9,7 @@ import { calculatePowerZones, sweetSpotRange, formatPowerZones, } from './zones/
 const program = new Command();
 program
     .name('tri-coach')
-    .description('Science-based endurance training templates & zone calculators for triathlon')
+    .description('Science-based endurance training templates & zone calculators for triathlon. Output is JSON by default (optimized for AI agents). Use --pretty for human-readable output.')
     .version('0.1.0');
 // ──────────────────────────────────────────────
 // templates list
@@ -19,17 +19,39 @@ templates
     .command('list')
     .description('List all workout templates')
     .option('-s, --sport <sport>', 'Filter by sport (run, bike, swim, strength, brick)')
+    .option('--pretty', 'Human-readable output instead of JSON')
     .action((opts) => {
     let filtered = allTemplates;
     if (opts.sport) {
         const sport = opts.sport.toLowerCase();
         filtered = allTemplates.filter((t) => t.sport === sport);
         if (filtered.length === 0) {
-            console.log(chalk.red(`No templates found for sport: ${opts.sport}`));
-            console.log(chalk.dim(`Available sports: run, bike, swim, strength, brick`));
+            if (opts.pretty) {
+                console.log(chalk.red(`No templates found for sport: ${opts.sport}`));
+                console.log(chalk.dim(`Available sports: run, bike, swim, strength, brick`));
+            }
+            else {
+                console.log(JSON.stringify({ error: `No templates found for sport: ${opts.sport}`, availableSports: ['run', 'bike', 'swim', 'strength', 'brick'] }));
+            }
             return;
         }
     }
+    if (!opts.pretty) {
+        // JSON output (default) — summary view for listing
+        const out = filtered.map((t) => ({
+            id: t.id,
+            name: t.name,
+            sport: t.sport,
+            category: t.category,
+            summary: t.summary,
+            trainingPhases: t.trainingPhases,
+            totalDuration: t.totalDuration,
+            frequency: t.frequency,
+        }));
+        console.log(JSON.stringify(out, null, 2));
+        return;
+    }
+    // Pretty output
     console.log(chalk.bold('\n  Workout Templates\n'));
     const grouped = new Map();
     for (const t of filtered) {
@@ -60,13 +82,25 @@ templates
 templates
     .command('show <id>')
     .description('Show detailed template information')
-    .action((id) => {
+    .option('--pretty', 'Human-readable output instead of JSON')
+    .action((id, opts) => {
     const template = allTemplates.find((t) => t.id === id);
     if (!template) {
-        console.log(chalk.red(`Template not found: ${id}`));
-        console.log(chalk.dim('Use "tri-coach templates list" to see available templates.'));
+        if (opts.pretty) {
+            console.log(chalk.red(`Template not found: ${id}`));
+            console.log(chalk.dim('Use "tri-coach templates list" to see available templates.'));
+        }
+        else {
+            console.log(JSON.stringify({ error: `Template not found: ${id}` }));
+        }
         return;
     }
+    if (!opts.pretty) {
+        // JSON output (default) — full template object
+        console.log(JSON.stringify(template, null, 2));
+        return;
+    }
+    // Pretty output
     const sportColors = {
         run: chalk.green,
         bike: chalk.yellow,
@@ -144,38 +178,67 @@ zones
     .option('--css-400 <time>', '400m swim TT time in m:ss (CSS swim zones)')
     .option('--css-200 <time>', '200m swim TT time in m:ss (CSS swim zones)')
     .option('--ftp <watts>', 'Functional threshold power in watts (cycling power zones)')
+    .option('--pretty', 'Human-readable output instead of JSON')
     .action((opts) => {
+    const jsonResult = {};
     let calculated = false;
     // Friel LTHR zones
     if (opts.lthr) {
         const lthr = parseInt(opts.lthr, 10);
         if (isNaN(lthr) || lthr < 100 || lthr > 220) {
-            console.log(chalk.red('Invalid LTHR. Expected a number between 100-220 bpm.'));
+            const err = 'Invalid LTHR. Expected a number between 100-220 bpm.';
+            if (opts.pretty)
+                console.log(chalk.red(err));
+            else
+                console.log(JSON.stringify({ error: err }));
             return;
         }
         const hrZones = calculateFrielZones(lthr);
-        console.log(chalk.bold(formatHRZones(hrZones, `Friel 7-Zone, LTHR=${lthr} bpm`)));
+        if (opts.pretty) {
+            console.log(chalk.bold(formatHRZones(hrZones, `Friel 7-Zone, LTHR=${lthr} bpm`)));
+        }
+        else {
+            jsonResult.frielZones = { method: 'friel_7zone', lthr, zones: hrZones };
+        }
         calculated = true;
     }
     // HRmax zones (with optional Karvonen)
     if (opts.maxHr) {
         const maxHr = parseInt(opts.maxHr, 10);
         if (isNaN(maxHr) || maxHr < 120 || maxHr > 230) {
-            console.log(chalk.red('Invalid max HR. Expected a number between 120-230 bpm.'));
+            const err = 'Invalid max HR. Expected a number between 120-230 bpm.';
+            if (opts.pretty)
+                console.log(chalk.red(err));
+            else
+                console.log(JSON.stringify({ error: err }));
             return;
         }
         if (opts.restHr) {
             const restHr = parseInt(opts.restHr, 10);
             if (isNaN(restHr) || restHr < 30 || restHr > 100) {
-                console.log(chalk.red('Invalid resting HR. Expected a number between 30-100 bpm.'));
+                const err = 'Invalid resting HR. Expected a number between 30-100 bpm.';
+                if (opts.pretty)
+                    console.log(chalk.red(err));
+                else
+                    console.log(JSON.stringify({ error: err }));
                 return;
             }
             const kZones = calculateKarvonenZones(maxHr, restHr);
-            console.log(chalk.bold(formatHRZones(kZones, `Karvonen (HRR), Max=${maxHr}, Rest=${restHr}`)));
+            if (opts.pretty) {
+                console.log(chalk.bold(formatHRZones(kZones, `Karvonen (HRR), Max=${maxHr}, Rest=${restHr}`)));
+            }
+            else {
+                jsonResult.karvonenZones = { method: 'karvonen', maxHr, restHr, zones: kZones };
+            }
         }
         else {
             const hrZones = calculateHRmaxZones(maxHr);
-            console.log(chalk.bold(formatHRZones(hrZones, `%HRmax 5-Zone, HRmax=${maxHr} bpm`)));
+            if (opts.pretty) {
+                console.log(chalk.bold(formatHRZones(hrZones, `%HRmax 5-Zone, HRmax=${maxHr} bpm`)));
+            }
+            else {
+                jsonResult.hrmaxZones = { method: 'hrmax_5zone', maxHr, zones: hrZones };
+            }
         }
         calculated = true;
     }
@@ -183,18 +246,27 @@ zones
     if (opts.race5k) {
         const seconds = parseTimeToSeconds(opts.race5k);
         if (seconds < 600 || seconds > 3600) {
-            console.log(chalk.red('Invalid 5K time. Expected mm:ss between 10:00 and 60:00.'));
+            const err = 'Invalid 5K time. Expected mm:ss between 10:00 and 60:00.';
+            if (opts.pretty)
+                console.log(chalk.red(err));
+            else
+                console.log(JSON.stringify({ error: err }));
             return;
         }
         const vdot = vdotFromRace('5k', opts.race5k);
         const paces = calculateDanielsPaces(vdot);
-        console.log(chalk.bold(formatDanielsPaces(paces)));
         const predictions = predictRaceTimes(vdot);
-        console.log(chalk.dim('\n  Race Predictions'));
-        for (const [dist, time] of Object.entries(predictions)) {
-            console.log(`  ${dist.padEnd(12)} ${time}`);
+        if (opts.pretty) {
+            console.log(chalk.bold(formatDanielsPaces(paces)));
+            console.log(chalk.dim('\n  Race Predictions'));
+            for (const [dist, time] of Object.entries(predictions)) {
+                console.log(`  ${dist.padEnd(12)} ${time}`);
+            }
+            console.log();
         }
-        console.log();
+        else {
+            jsonResult.vdot = { method: 'daniels_vdot', vdot, race5k: opts.race5k, paces, predictions };
+        }
         calculated = true;
     }
     // CSS swim zones
@@ -202,41 +274,76 @@ zones
         const t400 = parseSwimTime(opts.css400);
         const t200 = parseSwimTime(opts.css200);
         if (t400 <= t200) {
-            console.log(chalk.red('400m time must be greater than 200m time.'));
+            const err = '400m time must be greater than 200m time.';
+            if (opts.pretty)
+                console.log(chalk.red(err));
+            else
+                console.log(JSON.stringify({ error: err }));
             return;
         }
         const css = calculateCSS(t400, t200);
         const swimZones = calculateSwimZones(css);
-        console.log(chalk.bold(formatSwimZones(swimZones, css)));
+        if (opts.pretty) {
+            console.log(chalk.bold(formatSwimZones(swimZones, css)));
+        }
+        else {
+            jsonResult.swimZones = { method: 'css', css400: opts.css400, css200: opts.css200, cssPerHundredM: css, zones: swimZones };
+        }
         calculated = true;
     }
     else if (opts.css400 || opts.css200) {
-        console.log(chalk.red('Both --css-400 and --css-200 are required for swim zone calculation.'));
+        const err = 'Both --css-400 and --css-200 are required for swim zone calculation.';
+        if (opts.pretty)
+            console.log(chalk.red(err));
+        else
+            console.log(JSON.stringify({ error: err }));
         return;
     }
     // FTP power zones
     if (opts.ftp) {
         const ftp = parseInt(opts.ftp, 10);
         if (isNaN(ftp) || ftp < 50 || ftp > 600) {
-            console.log(chalk.red('Invalid FTP. Expected a number between 50-600 watts.'));
+            const err = 'Invalid FTP. Expected a number between 50-600 watts.';
+            if (opts.pretty)
+                console.log(chalk.red(err));
+            else
+                console.log(JSON.stringify({ error: err }));
             return;
         }
         const powerZones = calculatePowerZones(ftp);
-        console.log(chalk.bold(formatPowerZones(powerZones)));
         const ss = sweetSpotRange(ftp);
-        console.log(chalk.yellow(`\n  Sweet Spot: ${ss.min}-${ss.max}W (88-93% FTP)`));
-        console.log();
+        if (opts.pretty) {
+            console.log(chalk.bold(formatPowerZones(powerZones)));
+            console.log(chalk.yellow(`\n  Sweet Spot: ${ss.min}-${ss.max}W (88-93% FTP)`));
+            console.log();
+        }
+        else {
+            jsonResult.powerZones = { method: 'ftp', ftp, zones: powerZones, sweetSpot: ss };
+        }
         calculated = true;
     }
     if (!calculated) {
-        console.log(chalk.yellow('\n  No zone inputs provided. Use one or more of:'));
-        console.log(chalk.dim('    --lthr <bpm>              Friel 7-zone heart rate zones'));
-        console.log(chalk.dim('    --max-hr <bpm>            %HRmax 5-zone'));
-        console.log(chalk.dim('    --max-hr <bpm> --rest-hr <bpm>  Karvonen (HR reserve) zones'));
-        console.log(chalk.dim('    --race-5k <mm:ss>         VDOT pace zones'));
-        console.log(chalk.dim('    --css-400 <m:ss> --css-200 <m:ss>  CSS swim zones'));
-        console.log(chalk.dim('    --ftp <watts>             FTP power zones'));
-        console.log();
+        if (opts.pretty) {
+            console.log(chalk.yellow('\n  No zone inputs provided. Use one or more of:'));
+            console.log(chalk.dim('    --lthr <bpm>              Friel 7-zone heart rate zones'));
+            console.log(chalk.dim('    --max-hr <bpm>            %HRmax 5-zone'));
+            console.log(chalk.dim('    --max-hr <bpm> --rest-hr <bpm>  Karvonen (HR reserve) zones'));
+            console.log(chalk.dim('    --race-5k <mm:ss>         VDOT pace zones'));
+            console.log(chalk.dim('    --css-400 <m:ss> --css-200 <m:ss>  CSS swim zones'));
+            console.log(chalk.dim('    --ftp <watts>             FTP power zones'));
+            console.log();
+        }
+        else {
+            console.log(JSON.stringify({
+                error: 'No zone inputs provided',
+                availableOptions: ['--lthr <bpm>', '--max-hr <bpm>', '--rest-hr <bpm>', '--race-5k <mm:ss>', '--css-400 <m:ss> --css-200 <m:ss>', '--ftp <watts>'],
+            }));
+        }
+        return;
+    }
+    // Output collected JSON
+    if (!opts.pretty) {
+        console.log(JSON.stringify(jsonResult, null, 2));
     }
 });
 // ──────────────────────────────────────────────
