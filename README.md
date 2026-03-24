@@ -1,8 +1,19 @@
 # 🏊‍♂️🚴‍♂️🏃‍♂️ tri-coach
 
-**Science-based endurance training workout templates for triathlon, running, cycling, swimming, and strength.**
+**Science-based endurance training workout templates for triathlon, running, cycling, swimming, and strength. Optimized for AI coaching agents.**
 
 Every workout template in tri-coach is backed by peer-reviewed research — not vibes, not broscience. Each template includes the scientific rationale for *why* the workout works, citations you can actually look up, coaching cues for proper execution, and adaptations for beginner through advanced athletes.
+
+## Built for AI Agents
+
+tri-coach is designed as a **knowledge layer for AI coaching agents**. Instead of hard-coding training science into prompts, give your agent access to structured, citation-backed workout templates it can compose into personalized training plans.
+
+- **Structured output** — every template is a typed TypeScript object with consistent fields (phases, zones, RPE, coaching cues, adaptations) that agents can parse and reason over
+- **Composable** — agents can query templates by sport, category, or training phase and assemble weekly plans
+- **Self-documenting** — scientific rationale and citations are embedded in each template, so agents can explain *why* they're prescribing a workout
+- **Zone-aware** — feed in an athlete's test results and get back personalized HR, pace, or power targets
+
+Works great as a tool for ChatGPT, Claude, or any LLM-based coaching system.
 
 ## Why?
 
